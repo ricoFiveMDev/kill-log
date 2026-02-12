@@ -28,14 +28,24 @@ CreateThread(function()
     end
 end)
 
+-- Victim notification
 RegisterNetEvent('killlog:notifyVictim', function(killerName, killerId)
     lib.notify({
-        title = ('You were killed by %s (ID: %s)'):format(killerName, killerId),
+        title = ('💀 You were killed by %s (ID: %s)'):format(killerName, killerId),
         type = 'error',
         duration = 8000,
-        position = 'top',       -- top center
-        style = {
-            zIndex = 99999      -- ensure above most HUDs
-        }
+        position = 'top',
+        style = { zIndex = 99999 } -- ensures above Izzy HUD
+    })
+end)
+
+-- Killer notification
+RegisterNetEvent('killlog:notifyKiller', function(victimName, victimId)
+    lib.notify({
+        title = ('💀 You killed %s (ID: %s)'):format(victimName, victimId),
+        type = 'success',
+        duration = 8000,
+        position = 'top',
+        style = { zIndex = 99999 } -- ensures above Izzy HUD
     })
 end)
